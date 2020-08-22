@@ -11,11 +11,12 @@ import java.util.Date;
 @Slf4j
 public class DateUtils {
 
-    public static final String DATE_TIME_T = "yyyy-MM-dd'T'HH:mm:ss";
-    public static final String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
-    public static final String DATE_yyyy_MM_dd = "yyyy-MM-dd";
-    public static final String TIME = "HH:mm:ss";
-
+    public static final String YYYYMMDD_T_HHMMSS = "yyyy-MM-dd'T'HH:mm:ss";
+    public static final String YYYYMMDD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_YYYY_MM_dd = "yyyy-MM-dd";
+    public static final String HH_MM_SS = "HH:mm:ss";
+    public static final String DATE_MM_dd = "MM-dd";
+    public static final String DATE_mm_dd = "MM月dd";
 
     /**
      * 日期新增年数
@@ -96,6 +97,27 @@ public class DateUtils {
         return weekDays[w];
     }
 
+    /**
+     * 时间戳转时间
+     *
+     * @param timeStamp 时间戳
+     * @param format    需要转换的时间格式
+     */
+    public static String currentTimeToDate(Long timeStamp, String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);// 这个是你要转成后的时间的格式
+        String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp)))); // 时间戳转换成时间/
+        return sd;
+    }
+
+    /**
+     * 比较两个日期大小
+     *
+     * @return d1大于d2 返回true
+     */
+    public static boolean compareDate(Date d1, Date d2) {
+        return d1.getTime() > d2.getTime();
+    }
+
     private static SimpleDateFormat getSimpleDateFormat(String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat;
@@ -104,16 +126,17 @@ public class DateUtils {
     /**
      * 转换为格式化字符串
      *
-     * @param tt     時間
+     * @param time   時間
      * @param format 時間格式
      */
-    public static String timeStamp2DateTime(Date tt, String format) {
-        Date date = new Date(tt.getTime());
+    public static String dateFormat(Date time, String format) {
+        Date date = new Date(time.getTime());
         return getSimpleDateFormat(format).format(date);
     }
 
     /**
      * 將字符串時間轉換成Date類型
+     *
      * @param dateStr 時間字符串
      * @param format  轉換格式
      */
@@ -127,8 +150,7 @@ public class DateUtils {
      *
      * @param smdate 较小的时间
      * @param bdate  较大的时间
-     * @return 相差天数
-     * @throws ParseException
+     * @return 相差天数/
      */
     public static int daysBetween(Date smdate, Date bdate) {
         try {
@@ -146,7 +168,6 @@ public class DateUtils {
 
             return Integer.parseInt(String.valueOf(between_days));
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return 0;
@@ -166,8 +187,8 @@ public class DateUtils {
                 + "((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))";
 
         if ((date != null)) {
-            if (MatcherUtils.matcherStr(datePattern1,date) || MatcherUtils.matcherStr(datePattern2,date)) {
-                return MatcherUtils.matcherStr(datePattern3,date);
+            if (MatcherUtils.matcherStr(datePattern1, date) || MatcherUtils.matcherStr(datePattern2, date)) {
+                return MatcherUtils.matcherStr(datePattern3, date);
             } else {
                 return false;
             }
@@ -178,6 +199,7 @@ public class DateUtils {
 
     /**
      * 判断输入的字符串是否满足时间格式 ： yyyy-MM-dd HH:mm:ss
+     *
      * @param time 需要验证的字符串
      * @return 合法返回 true ; 不合法返回false
      */
@@ -187,6 +209,7 @@ public class DateUtils {
 
     /**
      * 判断输入的字符串是否满足时间格式 ： yyyy/MM/dd HH:mm:ss
+     *
      * @param time 需要验证的字符串
      * @return 合法返回 true ; 不合法返回false
      */
@@ -194,9 +217,19 @@ public class DateUtils {
         return MatcherUtils.matcherStr(MatcherUtils.TIME_2, time);
     }
 
-
-
-    public static void main(String[] args) {
-
+    /**
+     * 获取零点时间
+     */
+    public static String getDateZero(Date date) {
+        return dateFormat(date, DATE_YYYY_MM_dd) + " 00:00:00";
     }
+
+    /**
+     * 获取零点时间
+     */
+    public static String getDateEnd(Date date) {
+        return dateFormat(date, DATE_YYYY_MM_dd) + " 23:59:59";
+    }
+
+
 }

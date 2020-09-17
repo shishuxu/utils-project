@@ -243,6 +243,7 @@ public class FtpUtil {
                 } else {
                     File file2 = new File(f.getPath() + "/" + fstr);
                     FileInputStream input = new FileInputStream(file2);
+                    ftp.enterLocalPassiveMode();//設置被動模式,解決正式服務器端口被禁時，storeFile方法沒響應的問題
                     flag = ftp.storeFile(file2.getName(), input);
                     input.close();
                 }

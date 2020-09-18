@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
+/**正則工具類
  * @author xss
- * @version 1.0
+ * @version 1.0。0
  * date 2020-08-21
  */
 @Slf4j

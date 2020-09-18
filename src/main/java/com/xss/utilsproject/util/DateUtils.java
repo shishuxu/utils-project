@@ -7,7 +7,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * 日期工具類
+ * @author xss
+ * @version 1.0.0
+ * @date 2020-09-18 18:00
+ */
 @Slf4j
 public class DateUtils {
 

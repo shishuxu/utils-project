@@ -14,7 +14,12 @@ import org.springframework.util.CollectionUtils;
 import java.io.*;
 import java.util.List;
 import java.util.Objects;
-
+/**
+ * ftp協議上傳文件工具类
+ * @author xss
+ * @version 1.0.0
+ * @date 2020-09-18 18:00
+ */
 @Slf4j
 public class FtpUtil {
 

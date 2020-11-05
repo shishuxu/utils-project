@@ -29,11 +29,11 @@ public class DateUtils {
      * @param date 時間
      * @param num  年
      */
-    public static Timestamp addYear(Date date, int num) {
+    public static Date addYear(Date date, int num) {
         Calendar ca = Calendar.getInstance();
         ca.setTime(date);
         ca.set(Calendar.YEAR, ca.get(Calendar.YEAR) + num);
-        return new Timestamp(ca.getTimeInMillis());
+        return new Date(ca.getTimeInMillis());
     }
 
     /**
@@ -42,11 +42,11 @@ public class DateUtils {
      * @param date 時間
      * @param num  月
      */
-    public static Timestamp addMonth(Date date, int num) {
+    public static Date addMonth(Date date, int num) {
         Calendar ca = Calendar.getInstance();
         ca.setTime(date);
         ca.set(Calendar.MONTH, ca.get(Calendar.MONTH) + num);
-        return new Timestamp(ca.getTimeInMillis());
+        return new Date(ca.getTimeInMillis());
     }
 
     /**
@@ -55,11 +55,11 @@ public class DateUtils {
      * @param date 時間
      * @param num  天
      */
-    public static Timestamp addDay(Date date, int num) {
+    public static Date addDay(Date date, int num) {
         Calendar ca = Calendar.getInstance();
         ca.setTime(date);
         ca.set(Calendar.DAY_OF_YEAR, ca.get(Calendar.DAY_OF_YEAR) + num);
-        return new Timestamp(ca.getTimeInMillis());
+        return new Date(ca.getTimeInMillis());
     }
 
     /**
